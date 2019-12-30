@@ -73,9 +73,9 @@
                                                 <span>Login</span>
                                                 <a href="javascript:;"><i class="fa fa-times"></i></a>
                                             </div>
-                                            <form method="POST" action="http://amentotech.com/projects/doctry/login" class="dc-formtheme dc-loginform do-login-form">
-                                                <input type="hidden" name="_token" value="xM4KPHD636tdVA1dhy1F0TicTdsc5SGpzD9wlprT">
-                                                <fieldset>
+                                            <form method="POST" action="{{ route('login') }}" class="dc-formtheme dc-loginform do-login-form">
+                                              @csrf
+                                                    <fieldset>
                                                     <div class="form-group">
                                                         <input id="email" type="email" name="email" class="form-control" placeholder="Email" required autofocus>
                                                     </div>
@@ -92,12 +92,12 @@
                                                 </fieldset>
                                                 <div class="dc-loginfooterinfo">
                                                     <a href="password/reset.html" class="dc-forgot-password">Forget Password?</a>
-                                                    <a href="register.html">Create Account</a>
+                                                    <a href="{{route('register')}}">Create Account</a>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <a href="register.html" class="dc-btn">Join Now</a>
+                                    <a href="{{route('register')}}" class="dc-btn">Join Now</a>
                                 </div>
                             </div>
                         </div>
