@@ -9,9 +9,9 @@
     @csrf
     <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon">
     <!-- Favicon-->
-    <title>Dashboard - Oero Laravel</title>
+    <title>Dashboard - Salus Trust</title>
     <meta name="description" content="Oero Laravel">
-    <meta name="author" content="Oero Laravel">
+    <meta name="author" content="Salus Trust">
 
     <link rel="stylesheet" href="/back/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/back/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css" />

@@ -15,11 +15,14 @@ Route::get('/', function () {
     return view('front.home');
 });
 
-Route::get('/dashboard', function () {
-    return view('back.dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('back.dashboard');
+// });
 
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('admin.personal')->middleware('is_admin');
+Route::get('/admin/dashboard', 'HomeController@admin')->name('admin.home')->middleware('is_admin');
+Route::get('/dashboard', 'HomeController@admincompany')->name('admin.company')->middleware('is_admin');
 
-Route::get('/dashboard', 'HomeController@admin')->name('admin.home')->middleware('is_admin');
+
