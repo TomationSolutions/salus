@@ -25,4 +25,8 @@ Route::get('/home', 'HomeController@index')->name('admin.personal')->middleware(
 Route::get('/admin/dashboard', 'HomeController@admin')->name('admin.home')->middleware('is_admin');
 Route::get('/dashboard', 'HomeController@admincompany')->name('admin.company')->middleware('is_admin');
 
+// pages
+
+Route::get('/dependants', 'DependantsController@index')->name('dependants')->middleware('is_admin');
+
 
