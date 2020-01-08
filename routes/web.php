@@ -27,6 +27,8 @@ Route::get('/dashboard', 'HomeController@admincompany')->name('admin.company')->
 
 // pages
 
-Route::get('/dependants', 'DependantsController@index')->name('dependants')->middleware('is_admin');
+Route::get('/dependant', 'DependantsController@index')->name('dependant')->middleware('is_admin');
+Route::get('/adddependants', 'DependantsController@create')->name('adddependents')->middleware('is_admin');
+
 
 

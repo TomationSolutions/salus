@@ -41,7 +41,7 @@
                     </div>
                     <select class="custom-select" name="is_admin" id="inputGroupSelect01">
                         <option selected>Choose...</option>
-                        <option value="0">Personal</option>
+                        <option value="2">Personal</option>
                         <option value="2">Company</option>
                         
                     </select>

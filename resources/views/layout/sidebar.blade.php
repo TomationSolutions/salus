@@ -17,12 +17,12 @@
             </li>            
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href=""><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
-            <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><i class="zmdi zmdi-account"></i><span>Add Dependent</span></a></li>
+           
             <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
-                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>App</span></a>
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Dependants</span></a>
                 <ul class="ml-menu">
-                        
-                    <li class="{{ Request::segment(2) === 'contact-list' ? 'active' : null }}"><a href="">Contact list</a></li>
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('adddependents')}}"><span>Add Dependent</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="{{route('dependant')}}">View Dependants</a></li>
                 </ul>
             </li>
             <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">

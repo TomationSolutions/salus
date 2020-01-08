@@ -14,7 +14,7 @@ class DependantsController extends Controller
      */
     public function index()
     {
-        //
+        return vie('pages/dependent');
     }
 
     /**
@@ -24,7 +24,7 @@ class DependantsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.adddependants');
     }
 
     /**
