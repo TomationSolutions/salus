@@ -40,6 +40,22 @@
                     <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="{{route('packages')}}">View Packages</a></li>
                 </ul>
             </li>
+            <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Transaction</span></a>
+                <ul class="ml-menu">
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><span>Today Transaction</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="">Total Transaction</a></li>
+                </ul>
+            </li>
+            @endif
+            @if(auth()->user()->is_admin == 2)
+            <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Billings</span></a>
+                <ul class="ml-menu">
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><span>My Billings</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="">Dependants Billings</a></li>
+                </ul>
+            </li>
             @endif
             <!-- <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Project</span></a>

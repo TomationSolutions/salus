@@ -17,7 +17,7 @@ class DependantsController extends Controller
      */
     public function index()
     {
-        // $hospital = Hospital::where('id' = )
+        // $hospital = Hospital::where('auth()->user()->id' '=', 'user_id' )->get();
         return view('pages/dependant');
     }
 
