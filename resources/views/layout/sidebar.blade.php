@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </li>            
-            <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href=""><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('admin.personal')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
            
             <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
@@ -25,19 +25,42 @@
                     <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="{{route('dependant')}}">View Dependants</a></li>
                 </ul>
             </li>
-            <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
+            @if(auth()->user()->is_admin == 1)
+            <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Hospital</span></a>
+                <ul class="ml-menu">
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('addhospital')}}"><span>Add Hospital</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="{{route('hospital')}}">View Hospital</a></li>
+                </ul>
+            </li>
+            <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Packages</span></a>
+                <ul class="ml-menu">
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('addpackages')}}"><span>Add Packages</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="{{route('packages')}}">View Packages</a></li>
+                </ul>
+            </li>
+            @endif
+            <!-- <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Project</span></a>
                 <ul class="ml-menu">
                    
                     
-                <li class="{{ Request::segment(2) === 'ticket-detail' ? 'active' : null }}"><a href="">Ticket Detail</a></li>
-                
-            </ul>
+                <a class="" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </ul> -->
 
              <a class="" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                   <i class="zmdi zmdi-account"></i> {{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Depedants')
-@section('parentPageTitle', 'My Depedants')
+@section('title', 'Packages')
+@section('parentPageTitle', 'Packages')
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}"/>
@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}"/>
 <style>
 .input-group-text {
     padding: 0 .75rem;
@@ -23,8 +24,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2><strong>My</strong> Depedants</h2>
-                <ul class="header-dropdown">
+                <h2><strong>View</strong> Packages</h2>
+                <!-- <ul class="header-dropdown">
                     <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                         <ul class="dropdown-menu dropdown-menu-right slideUp">
                             <li><a href="javascript:void(0);">Action</a></li>
@@ -35,7 +36,7 @@
                     <li class="remove">
                         <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -43,36 +44,41 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Hospital</th>
-                                <th>Packages</th>
-                                <th>View Card</th>
+                                <th>Price</th>
+                                <!-- <th>Phone</th>
+                                <th>Address</th> -->
+                                <th>Action</th>
+                               <!-- <th>View Card</th> -->
                                 <!-- <th>Salary</th> -->
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Hospital</th>
-                                <th>Packages</th>
-                                <th>View Card</th>
+                                <th>Price</th>
+                                <!-- <th>Phone</th>
+                                <th>Address</th> -->
+                                 <th>Action</th>
+                               <!-- <th>View Card</th> -->
                                 <!-- <th>Salary</th> -->
                             </tr>
                         </tfoot>
                         <tbody>
                             <tr>
-                                <td>Spns</td>
-                                <td>spns@spns.com</td>
-                                <td>090898978</td>
-                                <td>Allen Ikeja</td>
-                                <td>Gold</td>
-                                <td><button type="button" class="btn btn-info">View Card</button></td>
+                            @if(count($packages) > 0)
+                            @foreach($packages as $package)
+                                <td>{{$package->name}}</td>
+                                <td>{{$package->price}}</td>
+                                <!-- <td></td>
+                                <td></td> -->
+                                <!-- <td>Gold</td> -->
+                                <td><button type="button" class="btn btn-info">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
                                 <!-- <td>$320,800</td> -->
                             </tr>
-                            
+                            @endforeach
+                            @endif
                             
                         </tbody>
                     </table>
@@ -93,4 +99,12 @@
 <script src="{{asset('assets/plugins/nouislider/nouislider.js')}}"></script>
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+<script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
+<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 @stop

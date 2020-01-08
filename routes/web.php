@@ -25,10 +25,22 @@ Route::get('/home', 'HomeController@index')->name('admin.personal')->middleware(
 Route::get('/admin/dashboard', 'HomeController@admin')->name('admin.home')->middleware('is_admin');
 Route::get('/dashboard', 'HomeController@admincompany')->name('admin.company')->middleware('is_admin');
 
-// pages
+// Dependants
 
 Route::get('/dependant', 'DependantsController@index')->name('dependant')->middleware('is_admin');
 Route::get('/adddependants', 'DependantsController@create')->name('adddependents')->middleware('is_admin');
+Route::post('/adddependants', 'DependantsController@store')->name('adddependents.post')->middleware('is_admin');
 
 
+//Hospital
+
+Route::get('/hospital', 'HospitalController@index')->name('hospital')->middleware('is_admin');
+Route::get('/addhospital', 'HospitalController@create')->name('addhospital')->middleware('is_admin');
+Route::post('/addhospital', 'HospitalController@store')->name('addhospital.post')->middleware('is_admin');
+
+//Packages
+
+Route::get('/packages', 'SubscriptionController@index')->name('packages')->middleware('is_admin');
+Route::get('/addpackages', 'SubscriptionController@create')->name('addpackages')->middleware('is_admin');
+Route::post('/addpackages', 'SubscriptionController@store')->name('addpackages.post')->middleware('is_admin');
 

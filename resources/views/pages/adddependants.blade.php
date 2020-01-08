@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Advanced')
-@section('parentPageTitle', 'Form')
+@section('title', 'Depedants')
+@section('parentPageTitle', 'Add Depedants')
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}"/>
@@ -20,7 +20,7 @@
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-7 col-md-6">
-    <form class="card auth_form"  method="POST" action="{{ route('login') }}">
+    <form class="card auth_form"  method="POST" action="{{ route('adddependents.post') }}" enctype="multipart/form-data">
     @csrf 
    
     <div class="body">
@@ -50,7 +50,7 @@
             </div> 
 
         <div class="input-group mb-3">
-            <input type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('name') }}" placeholder="Name or Company Name">
+            <input type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}">
             @error('dob')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -59,19 +59,23 @@
             
         </div>
         <div class="input-group mb-3">
-            <input type="phone" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name or Company Name">
-            @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             
+            
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="zmdi zmdi-smartphone"></i></span>
+                </div>
+                <input type="text" name="phone" class="form-control mobile-phone-number" placeholder="Ex: +00 (000) 000-00-00">
+            
+                @error('phone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
+       
         <div class="input-group mb-3">
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email">
-            <div class="input-group-append">
-                <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
-            </div>
+            
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -79,34 +83,62 @@
             @enderror
         </div>
         <div class="input-group mb-3">
-            <input type="text" class="form-control  @error('password') is-invalid @enderror" name="password" value="{{old('password')}}" placeholder="Password">
-            <div class="input-group-append">                                
-                <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
+            
+            <select class="select" name="hospital" id="inputGroupSelect01">
+            
+                <option selected>Hospital</option>
+                @if(count($hospitals) > 0)
+                @foreach($hospitals as $hospital)
+                <option value="{{$hospital->id}}">{{$hospital->name}}</option>
+            
+               @endforeach
+               @endif
+                
+            </select>
+            @error('hospital')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div> 
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror                          
-        </div>
-        
-        <div class="checkbox">
-            <input id="remember_me" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-            <label for="remember_me">Remember Me</label>
-        </div>
 
-        <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
-            {{ __('Login') }}
+            <div class="input-group mb-3">
+            
+                <select class="select" name="packages" id="inputGroupSelect01">
+                    <option selected>Packages</option>
+                    @if(count($packages) > 0) 
+                        @foreach($packages as $package)
+                        <option value="{{$package->id}}">{{$package->name}}</option>
+                    
+                    @endforeach
+                    @endif
+                    
+                </select>
+                @error('packages')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div> 
+                <div class="input-group mb-3">
+                <div class="form-group">
+                   
+                    <input type="file" class="form-control-file" name="image" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Depedents passport (image).</small>
+                  </div>
+                  @error('packages')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+        <button type="submit" class="btn btn-primary btn-block waves-effect ">
+            {{ __('Submit') }}
         </button>
-        @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-        @endif
+       
     </div>
-    <div class="signin_with mt-3">
-        <a class="link" href="{{route('register')}}">You didn't have account?</a>
-    </div>
+    
 </form>
 </div>
 </div>

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Dependant;
 use App\Hospital;
-use App\Subscription;
 
-class DependantsController extends Controller
+class HospitalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,8 @@ class DependantsController extends Controller
      */
     public function index()
     {
-        // $hospital = Hospital::where('id' = )
-        return view('pages/dependant');
+        $hospitals = Hospital::all();
+        return view('pages.hospitals', compact('hospitals'));
     }
 
     /**
@@ -28,11 +25,8 @@ class DependantsController extends Controller
      */
     public function create()
     {
-        $hospitals = Hospital::all();
-        $packages = Subscription::all();
-        return view('pages.adddependants', compact('hospitals', 'packages'));
+        return view('pages.addhospitals');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -43,23 +37,16 @@ class DependantsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'gender' => 'required',
-            'dob' => 'required',
-            'phone' => 'required',
             'email' => 'required|email',
-            'hospital' => 'required',
-            'packages' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'phone' => 'required',
+            'address'  => 'required'
+            
         ]);
 
-        $imageName = time().'.'.$request->image->extension();  
-   
-        $request->image->move(public_path('images'), $imageName);
+        Hospital::create($request->all());
 
-        Dependant::create($request->all());
-
-        return view('pages/dependent')->with();
-  
+        return view('pages.hospitals');
+    
     }
 
     /**
@@ -70,7 +57,7 @@ class DependantsController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

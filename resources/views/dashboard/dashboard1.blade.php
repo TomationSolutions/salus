@@ -36,7 +36,7 @@
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card widget_2 big_icon ">
             <div class="body">
-                <h6>Staff</h6>
+                <h6>Hospitals</h6>
                 <h2>39</h2>
                 <!-- <small>Total Registered email</small> -->
                 <div class="progress">

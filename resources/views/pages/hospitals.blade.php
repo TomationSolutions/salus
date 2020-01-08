@@ -1,67 +1,31 @@
 @extends('layout.master')
-@section('title', 'Dashboard')
+@section('title', 'Hospital')
+@section('parentPageTitle', 'Hospitals')
 @section('page-style')
-<link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
-<link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}"/>
+<style>
+.input-group-text {
+    padding: 0 .75rem;
+}
+</style>
 @stop
 @section('content')
 
-@if(auth()->user()->is_admin == 2)
-        <a href=" {{url('/')}}"> </a>
-@endif
-  
-
-<div class="row clearfix">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card widget_2 big_icon">
-            <div class="body">
-                <h6>Satff</h6>
-                <h2>20  </h2>
-                <!-- <small>2% higher than last month</small> -->
-                <div class="progress">
-                    <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card widget_2 big_icon">
-            <div class="body">
-                <h6>Packages</h6>
-                <h2>12 </h2>
-                <!-- <small>6% higher than last month</small> -->
-                <div class="progress">
-                    <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card widget_2 big_icon">
-            <div class="body">
-                <h6>Active Subscription</h6>
-                <h2>39</h2>
-                <!-- <small>Total Registered email</small> -->
-                <div class="progress">
-                    <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</div>
-
-
-
-<!-- Exportable Table -->
+   <!-- Exportable Table -->
 <div class="row clearfix">
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2><strong>View</strong> Dependant</h2>
-                <ul class="header-dropdown">
+                <h2><strong>View</strong> Hospital</h2>
+                <!-- <ul class="header-dropdown">
                     <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                         <ul class="dropdown-menu dropdown-menu-right slideUp">
                             <li><a href="javascript:void(0);">Action</a></li>
@@ -72,7 +36,7 @@
                     <li class="remove">
                         <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -83,7 +47,8 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>View Card</th>
+                                <th>Action</th>
+                               <!-- <th>View Card</th> -->
                                 <!-- <th>Salary</th> -->
                             </tr>
                         </thead>
@@ -93,20 +58,27 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>View Card</th>
+                                 <th>Action</th>
+                               <!-- <th>View Card</th> -->
                                 <!-- <th>Salary</th> -->
                             </tr>
                         </tfoot>
                         <tbody>
                             <tr>
-                                <td>Spns</td>
-                                <td>spns@spns.com</td>
-                                <td>090898978</td>
-                                <td>Allen Ikeja</td>
-                                <td><button type="button" class="btn btn-info">View Card</button></td>
+                            @if(count($hospitals) > 0)
+                            @foreach($hospitals as $hospital)
+                                <td>{{$hospital->name}}</td>
+                                <td>{{$hospital->email}}</td>
+                                <td>{{$hospital->phone}}</td>
+                                <td>{{$hospital->address}}</td>
+                                <!-- <td>Gold</td> -->
+                                <td><button type="button" class="btn btn-info">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
                                 <!-- <td>$320,800</td> -->
                             </tr>
-                            
+                            @endforeach
+                            @endif
                             
                         </tbody>
                     </table>
@@ -115,13 +87,18 @@
         </div>
     </div>
 </div>
+ 
 
 @stop
 @section('page-script')
-<script src="{{asset('assets/bundles/jvectormap.bundle.js')}}"></script>
-<script src="{{asset('assets/bundles/sparkline.bundle.js')}}"></script>
-<script src="{{asset('assets/bundles/c3.bundle.js')}}"></script>
-<script src="{{asset('assets/js/pages/index.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
+<script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+<script src="{{asset('assets/plugins/nouislider/nouislider.js')}}"></script>
+<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+<script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
