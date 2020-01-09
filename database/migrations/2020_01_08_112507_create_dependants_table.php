@@ -15,11 +15,12 @@ class CreateDependantsTable extends Migration
     {
         Schema::create('dependants', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');
             $table->string('name');
             $table->string('gender');
             $table->string('dob');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('hospital');
             $table->string('packages');
             $table->string('image');

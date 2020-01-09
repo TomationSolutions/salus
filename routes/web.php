@@ -44,3 +44,5 @@ Route::get('/packages', 'SubscriptionController@index')->name('packages')->middl
 Route::get('/addpackages', 'SubscriptionController@create')->name('addpackages')->middleware('is_admin');
 Route::post('/addpackages', 'SubscriptionController@store')->name('addpackages.post')->middleware('is_admin');
 
+Route::get('/billings','SubscriptionController@billings')->name('billings')->middleware('is_admin');
+

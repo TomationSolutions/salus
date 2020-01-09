@@ -8,16 +8,11 @@
 @stop
 @section('content')
 
-@if(auth()->user()->is_admin == 2)
-        <a href=" {{url('/')}}"> </a>
-@endif
-  
-
 <div class="row clearfix">
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card widget_2 big_icon">
             <div class="body">
-                <h6>Satff</h6>
+                <h6>Dependant</h6>
                 <h2>20  </h2>
                 <!-- <small>2% higher than last month</small> -->
                 <div class="progress">

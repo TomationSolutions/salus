@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Dependant;
 use App\Hospital;
 use App\Subscription;
+use App\User;
 
 class DependantsController extends Controller
 {
@@ -17,8 +18,10 @@ class DependantsController extends Controller
      */
     public function index()
     {
-        // $hospital = Hospital::where('auth()->user()->id' '=', 'user_id' )->get();
-        return view('pages/dependant');
+        $user = Auth()->user()->id;
+        // dd($user);
+        $dependants = Dependant::where('user_id', '=', $user)->get();
+        return view('pages.dependant', compact('dependants'));
     }
 
     /**
@@ -46,10 +49,10 @@ class DependantsController extends Controller
             'gender' => 'required',
             'dob' => 'required',
             'phone' => 'required',
-            'email' => 'required|email',
+            'email' => ['required', 'email', 'unique:dependants'],
             'hospital' => 'required',
             'packages' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
 
         $imageName = time().'.'.$request->image->extension();  
@@ -58,7 +61,26 @@ class DependantsController extends Controller
 
         Dependant::create($request->all());
 
-        return view('pages/dependent')->with();
+        switch ($request->input('action')) {
+
+            case 'submit':
+                $user = Auth()->user()->id;
+                // dd($user);
+                $dependants = Dependant::where('user_id', '=', $user)->get();
+                return view('pages.dependant', compact('dependants'))->with('success', 'New Dependants have added successful!');
+
+                break;
+    
+            case 'save':
+
+            $hospitals = Hospital::all();
+            $packages = Subscription::all();
+            return view('pages.adddependants', compact('hospitals', 'packages'))->with('success', 'New Dependants have added successful!');
+
+                break;
+    
+        }
+
   
     }
 

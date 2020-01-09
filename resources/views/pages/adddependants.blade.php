@@ -18,12 +18,22 @@
 @stop
 @section('content')
 <div class="row clearfix">
+    @if(!empty($success))
+		<!-- <div class="alert alert-success">{{$success}} </div> -->
+		<script type="text/javascript">swal("Good job!", "{{$success}}!", "success");</script>
+
+	@endif
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-7 col-md-6">
     <form class="card auth_form"  method="POST" action="{{ route('adddependents.post') }}" enctype="multipart/form-data">
     @csrf 
    
     <div class="body">
+
+    <div class="input-group mb-3">
+            <input type="text" class="form-control" name="user_id" value="{{ auth()->user()->id }}" hidden>
+          
+        </div>
 
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Full Name">
@@ -133,8 +143,12 @@
                     @enderror
                 </div>
 
-        <button type="submit" class="btn btn-primary btn-block waves-effect ">
+        <button type="submit" name="action" value="submit" class="btn btn-primary  waves-effect ">
             {{ __('Submit') }}
+        </button>
+       
+        <button type="submit" name="action" value="save" class="btn btn-primary float-right waves-effect ">
+            {{ __('Submit & continue') }}
         </button>
        
     </div>

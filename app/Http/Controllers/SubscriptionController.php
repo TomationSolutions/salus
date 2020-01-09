@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Subscription;
+use App\Dependant;
+use App\Hospital;
+use App\User;
 
 class SubscriptionController extends Controller
 {
@@ -91,5 +94,13 @@ class SubscriptionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function billings()
+    {
+        $user = Auth()->user()->id;
+        // dd($user);
+        $dependants = Dependant::where('user_id', '=', $user)->get();
+        return view('pages.billings',compact('dependants'));
     }
 }

@@ -52,8 +52,8 @@
             <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-account"></i> <span>Billings</span></a>
                 <ul class="ml-menu">
-                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href=""><span>My Billings</span></a></li>  
-                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="">Dependants Billings</a></li>
+                <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('billings')}}"><span>My Billings</span></a></li>  
+                    <li class="{{ Request::segment(2) === 'my-profile' ? 'active' : null }}"><a href="">Trsaction History</a></li>
                 </ul>
             </li>
             @endif

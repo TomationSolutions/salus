@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
 <style>
 .input-group-text {
     padding: 0 .75rem;
@@ -82,15 +84,39 @@
                             
                         </tbody>
                     </table>
-                </div>
+</div>
+                    <form>
+  <div class="form-row align-items-center float-right">
+    
+    <div class="col-auto">
+      <label class="sr-only" for="inlineFormInputGroup">Username</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Total Amount</div>
+        </div>
+        <input type="text" class="form-control" placeholder="#267,009" disabled>
+      </div>
+    </div>
+   
+    <div class="col-auto">
+      <!-- <button type="submit" class="btn btn-primary mb-2">Make Payment</button> -->
+      <button type="button" class="btn btn-primary mb-2" onclick="payWithPaystack()"> Make Payment</button> 
+    </div>
+  </div>
+</form>
+
+                
             </div>
         </div>
     </div>
+
+    
 </div>
  
 
 @stop
 @section('page-script')
+<script src="{{asset('assets/pay.js')}}"></script>
 <script src="{{asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
 <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
